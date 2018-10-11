@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Эможди-->
+        <!--Эмодзи-->
         <scene sceneID="eJ7-w9-vVC">
             <objects>
                 <tableViewController id="7ab-mP-Rlv" customClass="EmojiTableViewController" customModule="EmojiDictionary" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,7 +77,7 @@
                             <outlet property="delegate" destination="7ab-mP-Rlv" id="TMf-pA-Cp5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Эможди" id="tEs-dc-UTY">
+                    <navigationItem key="navigationItem" title="Эмодзи" id="tEs-dc-UTY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SdG-Ce-6FM">
                             <connections>
                                 <segue destination="cam-Hf-iS2" kind="show" identifier="EmojiAppendSegue" id="g0p-cf-AnK"/>
@@ -89,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="245.59999999999999" y="138.98050974512745"/>
         </scene>
-        <!--Опишите Эмоджи-->
+        <!--Опишите Эмодзи-->
         <scene sceneID="jdY-wX-9OY">
             <objects>
                 <tableViewController id="cam-Hf-iS2" customClass="EmojiDetailTableViewController" customModule="EmojiDictionary" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,7 +208,7 @@
                             <outlet property="delegate" destination="cam-Hf-iS2" id="hb4-Vz-Y9f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Опишите Эмоджи" id="Ju3-B3-OlA">
+                    <navigationItem key="navigationItem" title="Опишите Эмодзи" id="Ju3-B3-OlA">
                         <barButtonItem key="leftBarButtonItem" title="Отмена" id="hUG-3f-wkr">
                             <connections>
                                 <segue destination="sAz-xq-41d" kind="unwind" unwindAction="editCancelWithUnwindSegue:" id="LSr-BU-vVs"/>
