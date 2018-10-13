@@ -38,6 +38,7 @@ class EmojiTableViewController: UITableViewController {
         super.viewDidLoad()
         loadData()
         navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.title = "Правка"
     }
 
     // MARK: - Table view data source

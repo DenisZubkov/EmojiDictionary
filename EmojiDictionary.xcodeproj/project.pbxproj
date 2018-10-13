@@ -62,18 +62,42 @@
 		7A7F47B3216BC81F00B8F621 /* EmojiDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				7AE2E543216F2476000BC42F /* EmojiDetailTableViewController.swift */,
-				7AE2E544216F2476000BC42F /* EmojiType.swift */,
-				7A7F47C6216BC8C400B8F621 /* Emoji.swift */,
 				7A7F47B4216BC81F00B8F621 /* AppDelegate.swift */,
 				7A7F47B8216BC81F00B8F621 /* Main.storyboard */,
-				7A7F47C8216BCA9000B8F621 /* EmojiTableViewController.swift */,
-				7A7F47CA216BDFF000B8F621 /* EmojiTableViewCell.swift */,
+				7AFEBF2C21712E4700C4D6C7 /* Model */,
+				7AFEBF2D21712E5700C4D6C7 /* Controller */,
+				7AFEBF2E21712E6700C4D6C7 /* View */,
 				7A7F47BB216BC82200B8F621 /* Assets.xcassets */,
 				7A7F47BD216BC82200B8F621 /* LaunchScreen.storyboard */,
 				7A7F47C0216BC82200B8F621 /* Info.plist */,
 			);
 			path = EmojiDictionary;
+			sourceTree = "<group>";
+		};
+		7AFEBF2C21712E4700C4D6C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7A7F47C6216BC8C400B8F621 /* Emoji.swift */,
+				7AE2E544216F2476000BC42F /* EmojiType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7AFEBF2D21712E5700C4D6C7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A7F47C8216BCA9000B8F621 /* EmojiTableViewController.swift */,
+				7AE2E543216F2476000BC42F /* EmojiDetailTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7AFEBF2E21712E6700C4D6C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A7F47CA216BDFF000B8F621 /* EmojiTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
