@@ -14,3 +14,9 @@ https://youtu.be/1pYE87D43w4
 https://youtu.be/5WXyRWuStNY
 
 Проверка поля SYMBOL на наличие эмодзи и 1 символа в строке 
+
+3 часть:
+
+https://youtu.be/IzaooDHMe-k
+
+Сохранение в файл данных и загрузка из файла данных
