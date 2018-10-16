@@ -13,25 +13,48 @@ class EmojiTableViewController: UITableViewController {
     var emojis: [Emoji] = []
     var emojiTypes: [EmojiType] = []
     var isAppend: Bool?
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let fileName = "emojiTypes"
+    let fileExt = "plist"
     
 //    [EmojiType.init(name: "Животные", emojis: emojiAnimals),
 //                                   EmojiType.init(name: "Мордочки", emojis: emojiFaces)
 //    ]
 //
+    func saveData(to archiveURL: URL) {
+        let propertyListEncoder = PropertyListEncoder()
+        let encodeEmojiTypes = try? propertyListEncoder.encode(emojiTypes)
+        try? encodeEmojiTypes?.write(to: archiveURL, options: .noFileProtection)
+        
+    }
     
     func loadData() {
-        emojis.append(Emoji(symbol: "🐢", name: "Черепаха", description:  "Зеленая черепаха", usage: "Медленное движение"))
-        emojis.append(Emoji(symbol: "🐰", name: "Заяц", description:  "Заяц с ушами", usage: "Быстрое движение"))
-        emojis.append(Emoji(symbol: "🐱", name: "Кошка", description:  "Желтый кот", usage: "Хитрое поведение"))
-        emojis.append( Emoji(symbol: "🐶", name: "Собака", description:  "Типичный пес", usage: "Открытое поведение"))
-        emojis.append(Emoji(symbol: "😀", name: "Смайлик", description:  "Улыбающаяся мордочка", usage: "Медленное движение"))
-        emojis.append( Emoji(symbol: "😇", name: "Ангел", description:  "Мордочка с нимбом", usage: "Хорошие поступки}"))
-        emojis.append(Emoji(symbol: "😍", name: "Влюбленный", description:  "Влюбленная мордочка", usage: "Состояние влюбленности"))
-        let emojiAnimals = [emojis[0], emojis[1], emojis[2], emojis[3]]
-        let emojiFaces = [emojis[4], emojis[5], emojis[6]]
-        emojiTypes.append(EmojiType.init(name: "Животные", emojis: emojiAnimals))
-        emojiTypes.append(EmojiType.init(name: "Мордочки", emojis: emojiFaces))
-        emojiTypes.append(EmojiType.init(name: "Новые", emojis: []))
+
+        let archiveURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExt)
+        let propertyListDecoder = PropertyListDecoder()
+        if let data = try? Data(contentsOf: archiveURL),
+            let decodeEmojiTypes = try? propertyListDecoder.decode([EmojiType].self, from: data) {
+            
+            self.emojiTypes = decodeEmojiTypes
+            
+        } else {
+            
+            emojis.append(Emoji(symbol: "🐢", name: "Черепаха", description:  "Зеленая черепаха", usage: "Медленное движение"))
+            emojis.append(Emoji(symbol: "🐰", name: "Заяц", description:  "Заяц с ушами", usage: "Быстрое движение"))
+            emojis.append(Emoji(symbol: "🐱", name: "Кошка", description:  "Желтый кот", usage: "Хитрое поведение"))
+            emojis.append( Emoji(symbol: "🐶", name: "Собака", description:  "Типичный пес", usage: "Открытое поведение"))
+            emojis.append(Emoji(symbol: "😀", name: "Смайлик", description:  "Улыбающаяся мордочка", usage: "Медленное движение"))
+            emojis.append( Emoji(symbol: "😇", name: "Ангел", description:  "Мордочка с нимбом", usage: "Хорошие поступки}"))
+            emojis.append(Emoji(symbol: "😍", name: "Влюбленный", description:  "Влюбленная мордочка", usage: "Состояние влюбленности"))
+            let emojiAnimals = [emojis[0], emojis[1], emojis[2], emojis[3]]
+            let emojiFaces = [emojis[4], emojis[5], emojis[6]]
+            emojiTypes.append(EmojiType(name: "Животные", emojis: emojiAnimals))
+            emojiTypes.append(EmojiType(name: "Мордочки", emojis: emojiFaces))
+            emojiTypes.append(EmojiType(name: "Новые", emojis: []))
+            
+            saveData(to: archiveURL)
+            
+        }
     }
 
     override func viewDidLoad() {
@@ -88,7 +111,9 @@ class EmojiTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        let archiveURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExt)
+        saveData(to: archiveURL)
     }
     
 
@@ -119,15 +144,17 @@ class EmojiTableViewController: UITableViewController {
     
     //MARK: UITableViewDelegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojiTypes[indexPath.section].emojis[indexPath.row]
-        
-        print("\(emoji.symbol) - \(indexPath)")
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let emoji = emojiTypes[indexPath.section].emojis[indexPath.row]
+//
+//        print("\(emoji.symbol) - \(indexPath)")
+//    }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedEmoji = emojiTypes[sourceIndexPath.section].emojis.remove(at: sourceIndexPath.row)
         emojiTypes[destinationIndexPath.section].emojis.insert(movedEmoji, at: destinationIndexPath.row)
+        let archiveURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExt)
+        saveData(to: archiveURL)
         tableView.reloadData()
     }
     
@@ -174,6 +201,8 @@ class EmojiTableViewController: UITableViewController {
                 
             }
         }
+        let archiveURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExt)
+        saveData(to: archiveURL)
         tableView.reloadData()
         
         

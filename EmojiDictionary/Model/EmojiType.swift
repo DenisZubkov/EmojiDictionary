@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct EmojiType {
+class EmojiType: Codable {
     var name: String
     var emojis: [Emoji]
+    
+    init(name: String, emojis: [Emoji]) {
+        self.name = name
+        self.emojis = emojis
+    }
 }
 
